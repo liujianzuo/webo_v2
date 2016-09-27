@@ -6,7 +6,7 @@ from django.shortcuts import HttpResponse
 
 from dao import models
 
-
+from django.db.models import Q
 
 
 class WeiboRepo:
@@ -27,7 +27,7 @@ class WeiboRepo:
                     data = len(data)
 
             view_model = {"count_user_weibo": data, }
-            print(view_model,"view_model")
+            # print(view_model,"view_model")
             ret['data'] = view_model
         except Exception as e:
 
@@ -51,9 +51,7 @@ class WeiboRepo:
                 model_obj = models.Weibo.objects.filter(user_id__in=nid_list_followed).values("wb_type", "id", "text",
                                                                                         "pictures_link_id",
                                                                                         "video_link_id", "perm", "date",
-                                                                                        "user_id","user__user__username","user__name")
-
-
+                                                                                        "user_id","user__user__username","user__name").order_by("-id")
 
             view_data = {"weibo_detail_item": list(model_obj),}
             print(view_data, "view_model")
@@ -64,3 +62,29 @@ class WeiboRepo:
             ret["status"] = False
 
         return ret
+
+
+    def search_weibo_item(self,content):
+        ret = {"status": True, "data": "", "message": ""}
+        try:
+
+            mode_obj = models.Weibo.objects.filter(Q(user__name__contains=content)|Q(text__icontains=content)).values("wb_type", "id", "text",
+                                                                                        "pictures_link_id",
+                                                                                        "video_link_id", "perm", "date",
+                                                                                        "user_id","user__user__username","user__name","user__head_img").order_by("-id")
+
+            print(mode_obj)
+
+            # articlelist=Article.objects.filter(Q(title__icontains=search)|Q(content__icontains=search))
+            view_data = {"weibo_search_content": list(mode_obj),}
+            print(view_data, "mode_obj")
+            ret['data'] = view_data
+        except Exception as e:
+
+            ret['message'] = e
+            ret["status"] = False
+
+        return ret
+
+
+

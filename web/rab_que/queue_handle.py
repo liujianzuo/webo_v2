@@ -25,13 +25,16 @@ def dail_pic(request,pic_obj_list):
         os.mkdir(all_path)
 
     path_list = []
+
     for obj in pic_obj_list:
-        f = open(os.path.join(all_path, "%s_%s"%(timestamp,obj.name)), "wb")
+        prefix_pic =timestamp+1
+        f = open(os.path.join(all_path, "%s_%s"%(prefix_pic,obj.name)), "wb")
         # print(obj.name, obj.chunks(), type(obj.chunks()))
         for chunk in obj.chunks():
             f.write(chunk)
-        path_list.append(os.path.join("/%s" % pic_path, "%s_%s"%(timestamp,obj.name)))
-
+        path_list.append(os.path.join("/%s" % pic_path, "%s_%s"%(prefix_pic,obj.name)))
+        timestamp+=1
+    print(path_list)
     return json.dumps(path_list)
 
 
@@ -92,4 +95,27 @@ def get_all_new_weibo(request):
         return HttpResponse(json.dumps({"all_new_weibo": all_new_weibo}))
 
 
+def forward_weibo(request):
+    rep = {"status": True, "message": "", "data": ""}
+    if request.method == "POST":
 
+        # test 数据
+        # pic_path = "statics/%s/%s" %(user_id,timestamp)
+        # if os.path.exists(os.path.join(os.path.dirname(os.path.dirname(__file__)),pic_path))
+        # form_data = request.POST.get("weibo_data")
+        # form_data = {"text":"这是一条新的微博","perm":0,"wb_type":0,"pictures_link_id":json.dumps(['/statics/uploads/1/temp/563DE154F522BCEAF9C81A383396C066.jpg']),"user_id":user_id}
+
+        # form_data = {"text": text, "perm": perm, "wb_type": wb_type, "pictures_link_id": pictures_link_id,
+        #              "user_id": user_id}
+
+        form_data = request.POST.get("forward_data")
+
+        print(form_data)
+        que_name = "create_weibo_item"
+        channel = Rab_conn_server()
+
+        channel.create_rab_queue(que_name, json.dumps(form_data))
+        form_data = json.dumps(form_data)
+        rep["data"] = form_data
+
+    return HttpResponse(json.dumps(rep))

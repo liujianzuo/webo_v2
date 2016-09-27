@@ -91,7 +91,3 @@ def logout(request):
 
 
 
-def search(request):
-
-    return render(request, 'search/search.html')
-

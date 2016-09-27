@@ -275,4 +275,63 @@ def pic_handle(request):
     return render(request,"test/test.html")
 
 
+def search(request):
+
+    rep = {"status":True,"message":"","searhch_length":0}
+
+    username = request.session['username']
+    obj_user = UserRpostry()
+    user_nid = obj_user.select_nid(username)
+    user_nid = user_nid['data']
+
+    view_model = obj_user.select_follow_list_and_num(
+        user_nid)  # {'data': {'followed_num': 1, 'data': [{'age': 23, 'email': '1223995142@qq.com', 'sex': 1, 'name': '刘健佐', 'user_id__id': 1, 'follow_list__user_id': 2, 'head_img': 'statics/head_img/024B00103A7C6061429E5F1DB2913C74.png', 'brief': '一江春水向东流', 'tags__name': 'test'}], 'my_fans_num': 2}, 'message': '', 'status': True}
+
+    wei_user = WeiboRepo()
+    webo_count = wei_user.count_user_num_weibo(user_nid)
+    # print(webo_count)
+
+
+    # print(request,request.method,request.POST.get("search_data",None))
+    # if request.method == "POST":
+    # if request.method == "GET":
+
+
+
+    infomation = {}
+    if view_model["status"]:
+        infomation["followed_num"] = view_model['data']['followed_num']
+        infomation['my_fans_num'] = view_model['data']['my_fans_num']
+        infomation['userinfo'] = request.session['userinfo']['data'][0]
+        infomation["webo_count"] = webo_count['data']['count_user_weibo']
+        infomation["username"] = username
+        infomation["lenth"] = False # if request.method == "POST":
+
+    search_data = request.GET.get("search_data", None)
+    infomation["search_data"] = search_data
+
+    if search_data:
+        print(search_data)
+        wei_user = WeiboRepo()
+        weibo_detail_ = wei_user.search_weibo_item(search_data)
+        weibo_detail_data = weibo_detail_['data']['weibo_search_content']
+        print(1111, weibo_detail_data) # 1111 {'weibo_search_content': [{'user__user__username': 'lilu', 'user__name': '李露', 'perm': 0, 'video_link_id': None, 'wb_type': 0, 'id': 5, 'user_id': 3, 'date': datetime.datetime(2016, 9, 26, 8, 2, 4, 41588, tzinfo=<UTC>), 'pictures_link_id': '["/statics/uploads/1/temp/563DE154F522BCEAF9C81A383396C066.png"]', 'text': '这是一条新的微博'}, {'user__user__username': 'lilu', 'user__name': '李露', 'perm': 0, 'video_link_id': None, 'wb_type': 0, 'id': 4, 'user_id': 3, 'date': datetime.datetime(2016, 9, 26, 8, 0, 3, 635208, tzinfo=<UTC>), 'pictures_link_id': '["/statics/uploads/1/temp/563DE154F522BCEAF9C81A383396C066.png"]', 'text': '这是一条新sss的微博'}, {'user__user__username': 'hefei', 'user__name': '何菲', 'perm': 0, 'video_link_id': None, 'wb_type': 0, 'id': 3, 'user_id': 2, 'date': datetime.datetime(2016, 9, 26, 7, 58, 57, 256159, tzinfo=<UTC>), 'pictures_link_id': '["/statics/uploads/1/temp/563DE154F522BCEAF9C81A383396C066.png"]', 'text': '这是一条dsf新的微博'}, {'user__user__username': 'liu', 'user__name': '玄霸天', 'perm': 0, 'video_link_id': None, 'wb_type': 0, 'id': 2, 'user_id': 1, 'date': datetime.datetime(2016, 9, 26, 7, 54, 39, 28646, tzinfo=<UTC>), 'pictures_link_id': '["/statics/uploads/1/temp/563DE154F522BCEAF9C81A383396C066.png"]', 'text': '这是一条sdf新的微博'}, {'user__user__username': 'liu', 'user__name': '玄霸天', 'perm': 0, 'video_link_id': None, 'wb_type': 0, 'id': 1, 'user_id': 1, 'date': datetime.datetime(2016, 9, 26, 7, 49, 48, 80055, tzinfo=<UTC>), 'pictures_link_id': '["/statics/uploads/1/temp/563DE154F522BCEAF9C81A383396C066.png"]', 'text': '这是一sdfas条新的微博'}]}
+
+
+        for i in weibo_detail_data:
+            #     print(type(i))
+            index_num = weibo_detail_data.index(i)
+            print(index_num)
+            weibo_detail_data[index_num]["pictures_link_id"] = json.loads(
+                weibo_detail_data[index_num]["pictures_link_id"])
+
+        infomation["lenth"] = len(weibo_detail_["data"]['weibo_search_content'])
+        print(123123, weibo_detail_, )  # {'status': True, 'data': {'weibo_search_content': []}, 'message': ''}
+        # 123123 {'status': True, 'data': {'weibo_search_content': [{'user__user__username': 'lilu', 'pictures_link_id': '["/statics/uploads/1/temp/563DE154F522BCEAF9C81A383396C066.png"]', 'video_link_id': None, 'id': 5, 'date': datetime.datetime(2016, 9, 26, 8, 2, 4, 41588, tzinfo=<UTC>), 'user_id': 3, 'wb_type': 0, 'perm': 0, 'text': '这是一条新的微博', 'user__name': '李露'}, {'user__user__username': 'lilu', 'pictures_link_id': '["/statics/uploads/1/temp/563DE154F522BCEAF9C81A383396C066.png"]', 'video_link_id': None, 'id': 4, 'date': datetime.datetime(2016, 9, 26, 8, 0, 3, 635208, tzinfo=<UTC>), 'user_id': 3, 'wb_type': 0, 'perm': 0, 'text': '这是一条新sss的微博', 'user__name': '李露'}]}, 'message': ''}
+
+        infomation["weibo_detail_data"] = weibo_detail_data
+
+    return render(request,"search/search.html",{"infomation":infomation})
+
+
 

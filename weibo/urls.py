@@ -38,7 +38,7 @@ urlpatterns = [
     url(r'^index/', weibo_index.index),
     url(r'^lay_out/', weibo_index.lay_out),
     url(r'^test_lay_out/', weibo_index.test_lay_out),
-    url(r'^search/',account.search),
+    url(r'^search/',weibo_index.search),
     url(r'^weibo_login/',n_acc.login),
     url(r'^add_tags/',weibo_index.add_tags),
     url(r'^personal/', weibo_index.personal),
@@ -49,4 +49,5 @@ urlpatterns = [
     url(r'^get_num_weibo/',queue_handle.get_new_message),
     url(r'^get_all_new_weibo/',queue_handle.get_all_new_weibo),
     url(r'^wei_bo_detail_test/',tt.wei_bo_detail_test),
+    # url(r'^post_search/',weibo_index.post_search),
 ]
