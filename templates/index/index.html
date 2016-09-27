@@ -163,54 +163,7 @@
                                                 <div class="lev_layer" style="display:none">
                                                     <div class="W_arrow_bor W_arrow_bor_l"><i class="S_line3"></i><em
                                                             class="S_bg2_br"></em></div>
-                                                    <ul class="other_list clearfix">
-                                                        <li class="other" category_id="10018"
-                                                            action-type="filter_more_cat"
-                                                            suda-data="key=nologin_home&amp;value=nologin_left_hot:10018"
-                                                            suda-uatrack="key=www_unlogin_home&amp;value=movice"><a
-                                                                href="javascript:void(0);" class="S_txt2"><span
-                                                                class="#ico_block##"><em
-                                                                class="unlogin_icon ficon_unlog_beauty"></em></span><span
-                                                                class="levtxt">电影</span></a></li>
-                                                        <li class="other" category_id="10008"
-                                                            action-type="filter_more_cat"
-                                                            suda-data="key=nologin_home&amp;value=nologin_left_hot:10008"
-                                                            suda-uatrack="key=www_unlogin_home&amp;value=pet"><a
-                                                                href="javascript:void(0);" class="S_txt2"><span
-                                                                class="#ico_block##"><em
-                                                                class="unlogin_icon ficon_unlog_beauty"></em></span><span
-                                                                class="levtxt">萌宠</span></a></li>
-                                                        <li class="other" category_id="12" action-type="filter_more_cat"
-                                                            suda-data="key=nologin_home&amp;value=nologin_left_hot:12"
-                                                            suda-uatrack="key=www_unlogin_home&amp;value=fashion"><a
-                                                                href="javascript:void(0);" class="S_txt2"><span
-                                                                class="#ico_block##"><em
-                                                                class="unlogin_icon ficon_unlog_beauty"></em></span><span
-                                                                class="levtxt">时尚</span></a></li>
-                                                        <li class="other" category_id="3" action-type="filter_more_cat"
-                                                            suda-data="key=nologin_home&amp;value=nologin_left_hot:3"
-                                                            suda-uatrack="key=www_unlogin_home&amp;value=sports"><a
-                                                                href="javascript:void(0);" class="S_txt2"><span
-                                                                class="#ico_block##"><em
-                                                                class="unlogin_icon ficon_unlog_beauty"></em></span><span
-                                                                class="levtxt">体育</span></a></li>
-                                                        <li class="other" category_id="10001"
-                                                            action-type="filter_more_cat"
-                                                            suda-data="key=nologin_home&amp;value=nologin_left_hot:10001"
-                                                            suda-uatrack="key=www_unlogin_home&amp;value=digital"><a
-                                                                href="javascript:void(0);" class="S_txt2"><span
-                                                                class="#ico_block##"><em
-                                                                class="unlogin_icon ficon_unlog_beauty"></em></span><span
-                                                                class="levtxt">数码</span></a></li>
-                                                        <li class="other" category_id="10006"
-                                                            action-type="filter_more_cat"
-                                                            suda-data="key=nologin_home&amp;value=nologin_left_hot:10006"
-                                                            suda-uatrack="key=www_unlogin_home&amp;value=constellation">
-                                                            <a href="javascript:void(0);" class="S_txt2"><span
-                                                                    class="#ico_block##"><em
-                                                                    class="unlogin_icon ficon_unlog_beauty"></em></span><span
-                                                                    class="levtxt">星座</span></a></li>
-                                                    </ul>
+
                                                 </div>
                                             </div>
 
@@ -237,15 +190,15 @@
 <div id="v6_pl_content_publishertop" class=""><div class="send_weibo S_bg2 clearfix" node-type="wrap">
     <div class="title_area clearfix">
             <div style="margin-top: -5px" class="title11"><img src="/statics/image/tu.png" alt=""></div>
-            <div class="num S_txt2 hide" node-type="num">还可以输入<span>140</span>字</div>
+            <div class="num S_txt2 hide title2" node-type="num">还可以输入<span>140</span>字</div>
             <div class="key" node-type="recommendTopic">
-                <a href="http://hot.weibo.com?refer=homright" target="_blank">热门微博</a>
+                <a href="http://hot.weibo.com?refer=homright" target="_blank">热门微博点这里</a>
                 <a href="javascript:;" style="position:absolute;top:-1000px;" title="微博内容列表"></a>
                 <a href="javascript:;" id="focus_feed_list" style="position:absolute;top:-1000px;"></a>
             </div>
     </div>
     <div class="input" node-type="textElDiv" >
-        <textarea id="pub_content" class="W_input emotion " title="微博输入框" name="" node-type="textEl" range="0&amp;0" content=""></textarea>
+        <textarea oninput="font_siz()" id="textarea" class="W_input emotion " title="微博输入框" name="" node-type="textEl" range="0&amp;0" content=""></textarea>
         <div class="send_succpic" style="display:none" node-type="successTip"><span class="W_icon icon_succB"></span><span class="txt">发布成功</span></div>
         <form style="display:none;" node-type="extradata">
     		<input name="pollid" value="">
@@ -292,7 +245,7 @@
               <li><a href="">群可见</a></li>
             </ul>
          </div>
-         <a onclick="Sub();" style="display: inline-block;margin-top: 3px;margin-left: 74px"
+         <a id="analytic" onclick="Sub();" style="cursor: pointer;display: inline-block;margin-top: 3px;margin-left: 74px"
                  href="javascript:void(0);" class="W_btn_a btn_30px W_btn_a_disable"
             diss-data="module=stissue" node-type="submit" title="发布微博按钮">
              发布</a>
@@ -335,29 +288,19 @@
 <div  class="" style="color: #EB7350; text-align: center;background-color: #FFF8BF;margin-bottom: 10px">您有<span></span>条未读消息</div>
 {% endif %}
 <!--中间内容-->
-                    <ul class="pt_ul clearfix" pagenum="" node-type="feed_list">
+                    <ul id="content_list" class="pt_ul clearfix" pagenum="" node-type="feed_list">
 
                         <!--livetv card -->
 
                         {% for item in infomation.weibo_detail_data.weibo_detail_item %}
                                                         <!--livetv card -->
-                                                        <li class="pt_li pt_li_2 S_bg2" mid="4022190125377955"
+                                                        <li style="position: relative" class="pt_li pt_li_2 S_bg2" mid="4022190125377955"
                                                             action-type="feed_list_item" href="#">
                                                             <div class="pic_txt clearfix">
                                                                 <div class="info_box">
                                                                     <div class="text_box">
-                                                                        <div class="text text_cut2 W_f14">
-                                                                            {{ item.text }}<img render="ext"
-                                                                                                src="/statics/index_profile_js_css/doge_org.gif"
-                                                                                                title="[doge]"
-                                                                                                alt="[doge]"
-                                                                                                type="face"><img
-                                                                                render="ext"
-                                                                                src="/statics/index_profile_js_css/doge_org.gif"
-                                                                                title="[doge]" alt="[doge]" type="face"><img
-                                                                                render="ext"
-                                                                                src="/statics/index_profile_js_css/doge_org.gif"
-                                                                                >
+                                                                        <div  class="WWWW text text_cut2 W_f14">
+                                                                            {{ item.text }}
                                                                         </div>
                                                                     </div>
                                                                     <div class="pic_mul">
@@ -376,18 +319,22 @@
                                                                         <a target="_blank" href="#">{{ item.user__name }}</a>
                                                                         <span class="subinfo S_txt2">{{ item.date }}</span>
                                                                         <span class="subinfo_rgt S_txt2"><em
-                                                                                class="W_ficon ficon_praised S_ficon W_f16">ñ</em><em>143739</em></span>
+                                                                                class="W_ficon ficon_praised S_ficon W_f16">点赞</em><em>143739</em></span>
                                                                         <span class="rgt_line W_fr"></span>
                                                                         <span class="subinfo_rgt S_txt2"><em
-                                                                                class="W_ficon ficon_repeat S_ficon W_f16"></em><em>23022</em></span>
+                                                                                class="W_ficon ficon_repeat S_ficon W_f16">评论</em><em>23022</em></span>
                                                                         <span class="rgt_line W_fr"></span>
                                                                         <span class="subinfo_rgt S_txt2"><em
-                                                                                class="W_ficon ficon_forward S_ficon W_f16"></em><em>8040</em></span>
+                                                                                class="W_ficon ficon_forward S_ficon W_f16">转发</em><em>8040</em></span>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </li>
+                        <div style="position: absolute;width: 500px;height: auto;background-color: orange" class="">nihaowwewewewewwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww
+
+                        </div>
                                                         {% endfor %}
+
                     </ul>                <!--/feed内容-->
 
                 </div>
@@ -613,23 +560,51 @@
     <script src="/statics/search/face/jquery.sinaEmotion.js"></script>
 
     <script>
-        $.ready(function () {
+        $(function () {
             Post_user();
             check_is_login();
-            out();
+             alert(123)
+
+
+
         });
 
         $('#face').SinaEmotion($('.emotion'));
-
 		// 测试本地解析
+{#		function out() {#}
+{#			var inputText = $('.emotion').val();#}
+{#			$('#out1').html(AnalyticEmotion(inputText));#}
+{#			$('#out2').html(AnalyticEmotion(inputText));#}
+{#		}#}
 
-		function out() {
 
-			var inputText = $('.emotion').val();
 
-			$('#out').html(AnalyticEmotion(inputText));
+        $("#textarea").focusin(function () {
+            $(".key").addClass("hide");
+            $(".title2").removeClass("hide")
+        });
+        $("#textarea").focusout(function() {
+            $(".key").removeClass("hide");
+            $(".title2").addClass("hide")
+        });
+        function font_siz() {
+            var num = $("#textarea").val().length;
+            if(num<140){
+                 $(".title2").html('还可以输入'+ '<span></span>' + '字');
+                var all = $(".title2 span").text();
+                $(".title2 span").text(140-num);
+            }else{
+                 $(".title2").html('已超出'+ '<span>0</span>' + '字');
+                var all = $(".title2 span").text();
+                $(".title2 span").text(Math.abs(140-num));
+            }
 
-		}
+        }
+
+
+
+
+
 
         //picture上传
         function Close(ths) {
@@ -684,31 +659,28 @@
             var fileObj = $('.MyPic')[0].files;
             $.each(fileObj,function (k,v) {
                 form.append('fff',v);
-            })
+            });
             console.log(fileObj,form);
 
-{#            form.append('fff',fileObj);#}
-{#            $.ajax({#}
-{#                type:"POST",#}
-{#                url:"/file_up/",#}
-{#                dataType:'JSON',#}
-{#                data:form,#}
-{#                processData:false,#}
-{#                contentType:false,#}
-{#                success:function (data) {#}
-{#                    console.log(data)#}
-{#                }#}
-{#            })#}
         }
-{#        pub_list = []#}
+
+
+
         function Sub() {
+            $('.picture').addClass('hide');
             $('#News').removeClass('hide');
-            var content = $('#pub_content').val();
-            console.log(content)
-            var data_all_msg = {}
+            var content = $('#textarea').val();
+            console.log(content);
+            var data_all_msg = {};
+
+
+
+
+
+
             form.append("text",content);
             form.append("wb_type",0);
-            console.log(form)
+            console.log(form);
             $.ajax({
                 type:'POST',
                 url:'/create_weibo/',
@@ -717,11 +689,56 @@
                 processData: false,  // tell jQuery not to process the data
                 contentType: false,  // tell jQuery not to set contentType
                 success:function (data) {
-                    data={'pic_url':[],'content':content}
+                    //data为对象
+                    //data['data']是字符串
+{#                    console.log(typeof(data))#}
+{#                    console.log(typeof(data['data']),data['data'])#}
+
+                    var con = JSON.parse(data['data'])['text']
+                    console.log(con,'22222255555')
+                    var pic_list = JSON.parse(JSON.parse(data['data'])['pictures_link_id']);
+                    console.log(typeof(pic_list),pic_list)
+                    var leng = pic_list.length;
+                    ll = '';
+                    for(var i= 0;i<leng;i++){
+                        ll = ll +'<li class="unlog_pic"><img src="'+pic_list[i]+'" class="piccut_v piccut_h"></li>'
+
+                      }
+                    var zane = AnalyticEmotion(con);
+                    console.log(zane, 11111111);
+                    console.log(typeof zane);
+                    var new_li = [
+                     '<li class="pt_li pt_li_2 S_bg2"><div class="pic_txt clearfix"><div class="info_box"><div class="text_box"><div id="out2" class="WWWW text text_cut2 W_f14">',
+                     zane,
+                     '</div></div><div class="pic_mul"><ul class="pic_m3 clearfix">',
+                      ll,
+                      '</ul></div><div class="subinfo_box clearfix"><a href="">',
+                      content,
+                      '</a><span class="subinfo S_txt2">',
+                      content,
+                      '</span><span class="subinfo_rgt S_txt2"><em class="W_ficon ficon_praised S_ficon W_f16">点赞</em><em>',
+                      content,
+                      '</em></span><span class="subinfo_rgt S_txt2"><em class="W_ficon ficon_praised S_ficon W_f16">评论</em><em>',
+                      content,
+                      '</em></span><span class="subinfo_rgt S_txt2"><em class="W_ficon ficon_praised S_ficon W_f16">转发</em><em>',
+                      content,
+                      '</em></span></div></div></div></li>'
+                    ].join('');
+                    $('#content_list').prepend(new_li);
+
+
+
+
                 }
-            })
-{#            pub_list = []#}
+            });
             form = new FormData();
+        }
+        window.onload=function () {
+            $('.WWWW').each(function () {
+                var all_content = $(this).text();
+                var result = AnalyticEmotion(all_content);
+                $(this).html(result)
+            });
         }
 
 
@@ -740,18 +757,11 @@
                     console.log(data);
                     if (data.status){
                         location.href="/index";
-{#                        $("#v6_pl_content_publishertop").removeClass("hide")#}
-{#                        $("#v6_pl_rightmod_myinfo").removeClass("hide")#}
-{#                        $("#W_unlogin_v2").addClass("hide")#}
                     }else {
 
                     }
-
-
                 }
-
             })
-
         }
 
 

@@ -55,10 +55,13 @@ $(function() {
 	});
 });
 
-//替换
+//替换,,,,,................................................
 function AnalyticEmotion(s) {
 	if(typeof (s) != "undefined") {
 		var sArr = s.match(/\[.*?\]/g);
+		if (!sArr){
+			sArr = new Array();
+		}
 		for(var i = 0; i < sArr.length; i++){
 			if(uSinaEmotionsHt.containsKey(sArr[i])) {
 				var reStr = "<img src=\"" + uSinaEmotionsHt.get(sArr[i]) + "\" height=\"22\" width=\"22\" />";

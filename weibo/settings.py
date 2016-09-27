@@ -145,4 +145,4 @@ REDIS_CONN = {
 
 FILE_CENTER_PATH = os.path.join(BASE_DIR, "web/statics/uploads")
 
-rabbit_host = "115.28.147.110"
+rabbit_host = "192.168.32.129"
